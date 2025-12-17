@@ -223,4 +223,3 @@ void bacaDanKirimData() {
   // Delay kecil untuk stabilitas
   delay(100);
 }
-
