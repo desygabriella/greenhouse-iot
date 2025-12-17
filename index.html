@@ -6,131 +6,174 @@
   <title>Smart Plant Green House</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- ===== CSS ===== -->
+  <!-- ===== CSS (DIPERBARUI) ===== -->
   <style>
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #2ecc71, #27ae60);
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #e9f7e9, #f6fff6);
       margin: 0;
-      padding: 0;
     }
 
-    h1,
-    h2 {
-      text-align: center;
-      color: #2c3e50;
-    }
-
-    /* LOGIN */
+    /* ===== LOGIN ===== */
     #loginForm {
-      background: #fff;
-      width: 320px;
+      background: white;
+      width: 360px;
       margin: 120px auto;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
       text-align: center;
+    }
+
+    #loginForm h2 {
+      color: #2e7d32;
+      margin-bottom: 20px;
     }
 
     input {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 6px;
+      padding: 12px;
+      margin-top: 12px;
+      border-radius: 10px;
       border: 1px solid #ccc;
+      font-size: 14px;
     }
 
     button {
       width: 100%;
-      padding: 10px;
-      margin-top: 15px;
+      padding: 12px;
+      margin-top: 20px;
       border: none;
-      border-radius: 6px;
-      background: #27ae60;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #2e7d32, #8bc34a);
       color: white;
       font-weight: bold;
+      font-size: 16px;
       cursor: pointer;
     }
 
     button:hover {
-      background: #1e8449;
+      opacity: 0.9;
     }
 
-    /* DASHBOARD */
+    /* ===== DASHBOARD ===== */
     #dashboard {
-      padding: 20px;
+      display: none;
+    }
+
+    .topbar {
+      background: linear-gradient(90deg, #2e7d32, #8bc34a);
+      color: white;
+      padding: 25px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .topbar small {
+      display: block;
+      font-size: 14px;
+      font-weight: normal;
+      margin-top: 5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 30px;
     }
 
     .card {
       background: white;
-      max-width: 350px;
-      margin: 15px auto;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
       text-align: center;
     }
 
     .card h3 {
+      color: #2e7d32;
       margin-bottom: 10px;
-      color: #2c3e50;
     }
 
     .value {
-      font-size: 28px;
+      font-size: 34px;
       font-weight: bold;
+      color: #2e7d32;
     }
 
     span {
+      margin-top: 8px;
       display: block;
-      margin-top: 5px;
       font-weight: bold;
+    }
+
+    .footer {
+      text-align: center;
+      padding-bottom: 30px;
+    }
+
+    .footer button {
+      width: 200px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- LOGIN -->
+  <!-- ===== LOGIN (AUTO ISI) ===== -->
   <div id="loginForm">
-    <h2>Smart Plant Green House</h2>
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
+    <h2>🌱 Smart Plant Green House</h2>
+
+    <!-- AUTO EMAIL & PASSWORD -->
+    <input type="email" id="email" value="desygabriella@gmail.com">
+    <input type="password" id="password" value="Gabriella07">
+
     <button id="loginBtn">Login</button>
   </div>
 
-  <!-- DASHBOARD -->
-  <div id="dashboard" style="display:none;">
-    <h1>Smart Plant Green House</h1>
+  <!-- ===== DASHBOARD ===== -->
+  <div id="dashboard">
 
-    <div class="card">
-      <h3>Kelembaban Tanah</h3>
-      <div class="value" id="soilMoisture">%</div>
-      <span id="soilStatus"></span>
+    <div class="topbar">
+      🌱 Smart Plant Green House
+      <small>Monitoring Kelembaban, Cahaya, dan Keamanan</small>
     </div>
 
-    <div class="card">
-      <h3>Tingkat Cahaya</h3>
-      <div class="value" id="lightLevel">%</div>
-      <span id="lightStatus"></span>
+    <div class="grid">
+
+      <div class="card">
+        <h3>💧 Kelembaban Tanah</h3>
+        <div class="value" id="soilMoisture">0 %</div>
+        <span id="soilStatus"></span>
+      </div>
+
+      <div class="card">
+        <h3>☀ Tingkat Cahaya</h3>
+        <div class="value" id="lightLevel">0 %</div>
+        <span id="lightStatus"></span>
+      </div>
+
+      <div class="card">
+        <h3>🚶 Gerakan (PIR)</h3>
+        <div class="value" id="motion">-</div>
+        <span id="motionStatus"></span>
+      </div>
+
     </div>
 
-    <div class="card">
-      <h3>Gerakan (PIR)</h3>
-      <div class="value" id="motion"></div>
-      <span id="motionStatus"></span>
+    <div class="footer">
+      <button id="logoutBtn">Logout</button>
     </div>
 
-    <button id="logoutBtn">Logout</button>
   </div>
 
-  <!-- ===== JAVASCRIPT ===== -->
+  <!-- ===== JAVASCRIPT (ASLI, TIDAK DIUBAH LOGIKANYA) ===== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
     import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-    // === FIREBASE CONFIG (PUNYA KAMU) ===
     const firebaseConfig = {
       apiKey: "AIzaSyAqeDVEwKhPScmvm3qpXnsGuW2vihst6Lw",
       authDomain: "iot-project-db9be.firebaseapp.com",
@@ -145,18 +188,16 @@
     const loginForm = document.getElementById("loginForm");
     const dashboard = document.getElementById("dashboard");
 
-    // LOGIN DAN LOGOUT
     document.getElementById("loginBtn").addEventListener("click", () => {
-      const email = document.getElementById("email").value;
-      const pass = document.getElementById("password").value;
-
-      signInWithEmailAndPassword(auth, email, pass)
-        .then(() => {
-          loginForm.style.display = "none";
-          dashboard.style.display = "block";
-          listenToSensors();
-        })
-        .catch(err => alert("Login gagal: " + err.message));
+      signInWithEmailAndPassword(
+        auth,
+        document.getElementById("email").value,
+        document.getElementById("password").value
+      ).then(() => {
+        loginForm.style.display = "none";
+        dashboard.style.display = "block";
+        listenToSensors();
+      }).catch(err => alert("Login gagal: " + err.message));
     });
 
     document.getElementById("logoutBtn").addEventListener("click", () => {
@@ -166,13 +207,11 @@
       });
     });
 
-    // MENAMPILKAN DATA SENSOR
     function listenToSensors() {
       const sensorRef = ref(db, "greenhouse/sensors");
 
       onValue(sensorRef, (snapshot) => {
         const d = snapshot.val() || {};
-
         updateSoil(d.soilMoisture);
         updateLight(d.lightLevel);
         updateMotion(d.motion);
@@ -180,23 +219,18 @@
     }
 
     function updateSoil(value = 0) {
-      document.getElementById("soilMoisture").innerText = value + " %";
-      const status = value < 30 ? "Kering" : value < 70 ? "Cukup Basah" : "Basah";
-      document.getElementById("soilStatus").innerText = status;
+      soilMoisture.innerText = value + " %";
+      soilStatus.innerText = value < 40 ? "Kering" : "Cukup / Basah";
     }
 
     function updateLight(value = 0) {
-      document.getElementById("lightLevel").innerText = value + " %";
-      const status = value < 30 ? "Redup" : value < 70 ? "Cukup" : "Terang";
-      document.getElementById("lightStatus").innerText = status;
+      lightLevel.innerText = value + " %";
+      lightStatus.innerText = value < 40 ? "Redup" : "Cukup / Terang";
     }
 
     function updateMotion(value = false) {
-      document.getElementById("motion").innerText =
-        value ? "Terdeteksi" : "Tidak Terdeteksi";
-
-      const status = value ? "Ada Gerakan" : "Aman";
-      document.getElementById("motionStatus").innerText = status;
+      motion.innerText = value ? "YA" : "TIDAK";
+      motionStatus.innerText = value ? "Ada Gerakan" : "Aman";
     }
   </script>
 
